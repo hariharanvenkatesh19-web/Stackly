@@ -1,0 +1,146 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=scr, initial-scale=1.0">
+    <title>Task2</title>
+</head>
+<body>
+    <script>
+ // 1) Employee Bonus Filter.
+   
+    let employees = [
+    {name:"john", salary:200000},
+    {name:"rahul", salary:500000},
+    {name:"siva", salary:700000}
+   ];
+   
+   employees .filter(emp => emp.salary > 300000)
+  .map(emp => console.log(`Congrats ${emp.name}`));
+
+  // 2) Shopping Cart Total.
+
+     let cart = [1200, 3400, 500, 999];
+     let total = cart.reduce((sum, item) => sum + item, 0);
+     console.log(total);
+
+  // 3) Login Username Formatter.
+  
+     let user = "Hariharan";
+     let formatted = user.slice(0, 1).toUpperCase() + user.slice(1);
+     console.log(formatted);
+
+  // 4) OTP Checker.
+     
+     let otp = "560890";
+
+     if (otp.includes("0")) {
+     console.log("Valid OTP");
+    } 
+    else 
+    {
+     console.log("Invalid OTP");
+}
+ // 5) Food Delivery App.
+
+    let orders = ["burger", "pizza"];
+    orders.push("shawarma");
+    orders.pop();
+    console.log(orders);
+
+// 6) Attendance Checker.
+
+    let marks = [40, 50, 70, 80];
+    let allPassed = marks.every(mark => mark >= 35);
+    console.log(allPassed);
+
+// 7) Find VIP Customer.
+
+    let customer = [ {name:"arun", purchase:5000},{name:"vijay", purchase:15000},{name:"surya", purchase:25000} ];
+    let vip = customer.find(c => c.purchase > 10000);
+    console.log(vip.name);
+
+// 8) Reverse Chat Message.
+
+    let msg = "hello";
+    let reversed = msg.split("").reverse().join("");
+    console.log(reversed);
+
+// 9) Remove Duplicate Product.
+
+    let products = ["tv", "laptop", "mobile", "watch"];
+    let position = products.indexOf("mobile");
+    console.log(position); 
+
+// 10) Student Rank Sort.
+
+    let mark = [99, 45, 12, 67, 89];
+    mark.sort((a, b) => a - b);
+    console.log(mark);
+
+// 11) Movie Search.
+
+    let movies = ["Jailer", "Leo", "Vikram"];
+    let exists = movies.some(movie => movie === "Leo");
+    console.log(exists);
+
+// 12) Hide Mobile Number.
+
+    let num = "9843671480";
+    let last4 = num.slice(-4);
+    console.log(last4);
+
+// 13) Online Exam Result.
+
+    let Resultmark = 78;
+    let result = Resultmark >= 35 ? "Pass" : "Fail";
+    console.log(result);
+
+// 14) Cab Booking Price.
+
+    function totalFare(baseFare, extraKm) {
+    return baseFare + extraKm;
+} 
+    console.log(totalFare(100, 50));
+
+// 15) Instagram Hashtag Generator.
+
+    let tag = "Java developer";
+    let hashtag = tag.replaceAll(" ", "_");
+    console.log(hashtag);
+
+// 16) Netflix Kids Content.
+
+    let movie = [ {name:"A", age:13},{name:"B", age:18},{name:"C", age:10}];
+    movie
+   .filter(movie => movie.age < 18)
+   .forEach(movie => console.log(movie.name));
+
+// 17) E-commerce Product Search.
+
+    let product = "iphone";
+    let starts = product.startsWith("i");
+    console.log(starts);
+
+// 18) WhatsApp Group Names.
+
+    let groups = ["office", "friends", "family"];
+    groups.forEach((group, index) => {
+    console.log(`${index + 1} ${group}`);
+});
+
+// 19) Salary Highest Finder.
+
+    let salary = [20000, 50000, 70000, 10000];
+    let highest = salary.reduce((max, current) => current > max ? current : max, salary[0]);
+    console.log(highest);
+
+// 20) Password Security Checker.
+
+    let password = "Hari@1234";
+    let strong = password.length >= 8 && password.includes("@") ? "Strong Password" : "Weak Password";
+    console.log(strong);
+    
+     </script>
+</body>
+</html>
