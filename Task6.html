@@ -9,14 +9,9 @@
     <script>
  // 1) Employee Bonus Filter.
    
-    let employees = [
-    {name:"john", salary:200000},
-    {name:"rahul", salary:500000},
-    {name:"siva", salary:700000}
-   ];
-   
-   employees .filter(emp => emp.salary > 300000)
-  .map(emp => console.log(`Congrats ${emp.name}`));
+     let employees = [ {name:"john", salary:200000},{name:"rahul", salary:500000},{name:"siva", salary:700000}];
+     employees .filter(emp => emp.salary > 300000)
+     .map(emp => console.log(`Congrats ${emp.name}`));
 
   // 2) Shopping Cart Total.
 
@@ -140,7 +135,7 @@
     let password = "Hari@1234";
     let strong = password.length >= 8 && password.includes("@") ? "Strong Password" : "Weak Password";
     console.log(strong);
-    
+
      </script>
 </body>
 </html>
