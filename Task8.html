@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=scr, initial-scale=1.0">
+    <title>Task2</title>
+</head>
+<body>
+    <script>
+
+// API Link
+let apiLink = "https://fakestoreapi.com/products";
+
+// Fetch all products first
+let products = [];
+
+fetch(apiLink)
+  .then(response => response.json())
+  .then(data => {
+    products = data;
+    
+// 1) Print All Products.
+
+    console.log("=== All Products ===");
+    products.forEach(product => {
+      console.log(`Title : ${product.title}`);
+      console.log(`Price : ${product.price}`);
+      console.log("---");
+    });
+    
+// 2) Print Only Product Titles.
+
+    console.log("\n=== Product Titles ===");
+    products.forEach((product, index) => {
+      console.log(`Product ${index + 1}`);
+    });
+    
+// 3) Print Total Products.
+
+    console.log("\n=== Total Products ===");
+    console.log(`Total Products : ${products.length}`);
+    
+// 4) Print All Categories.
+
+    console.log("\n=== All Categories ===");
+    const categories = [...new Set(products.map(p => p.category))];
+    categories.forEach(category => {
+      console.log(category);
+    });
+    
+// 5) Print Products Above $50.
+
+    console.log("\n=== Products Above $50 ===");
+    const productsAbove50 = products.filter(p => p.price > 50);
+    productsAbove50.forEach(p => {
+      console.log(`${p.title} - ${p.price}`);
+    });
+    
+// 6) Print Products Below $50.
+
+    console.log("\n=== Products Below $50 ===");
+    const productsBelow50 = products.filter(p => p.price < 50);
+    productsBelow50.forEach(p => {
+      console.log(`${p.title} - ${p.price}`);
+    });
+    
+// 7) Find First Product Above $100.
+
+    console.log("\n=== First Product Above $100 ===");
+    const firstAbove100 = products.find(p => p.price > 100);
+    console.log(firstAbove100);
+    
+// 8) Search Product.
+
+    console.log("\n=== Search Product (shirt) ===");
+    let searchText = "shirt";
+    const searchResults = products.filter(p => 
+      p.title.toLowerCase().includes(searchText.toLowerCase())
+    );
+    searchResults.forEach(p => {
+      console.log(`${p.title} - $${p.price}`);
+    });
+    
+//  9) Count Electronics Products.
+
+    console.log("\n=== Electronics Count ===");
+    const electronicsCount = products.filter(p => p.category === 'electronics').length;
+    console.log(`Electronics Count : ${electronicsCount}`);
+    
+// 10) Print Highest Price Product.
+
+    console.log("\n=== Highest Price Product ===");
+    const sortedByPriceDesc = [...products].sort((a, b) => b.price - a.price);
+    console.log(`Title: ${sortedByPriceDesc[0].title}`);
+    console.log(`Price: ${sortedByPriceDesc[0].price}`);
+   
+// 11) Print Lowest Price Product.
+
+    console.log("\n=== Lowest Price Product ===");
+    const sortedByPriceAsc = [...products].sort((a, b) => a.price - b.price);
+    console.log(`Title: ${sortedByPriceAsc[0].title}`);
+    console.log(`Price: ${sortedByPriceAsc[0].price}`);
+    
+// 12) Calculate Total Price of All Products.
+
+    console.log("\n=== Total Price ===");
+    const totalPrice = products.reduce((sum, p) => sum + p.price, 0);
+    console.log(`Total Price : ${totalPrice}`);
+    
+// 13) Calculate Average Product Price.
+
+    console.log("\n=== Average Price ===");
+    const averagePrice = totalPrice / products.length;
+    console.log(`Average Price : ${averagePrice.toFixed(2)}`);
+    
+// 14) Print Product With Highest Rating.
+
+    console.log("\n=== Highest Rated Product ===");
+    const highestRated = products.reduce((max, p) => 
+      p.rating.rate > max.rating.rate ? p : max
+    );
+    console.log(`Title : ${highestRated.title}`);
+    console.log(`Rating : ${highestRated.rating.rate}`);
+    
+// 15) Print Product With Lowest Rating.
+
+    console.log("\n=== Task 15: Lowest Rated Product ===");
+    const lowestRated = products.reduce((min, p) => 
+      p.rating.rate < min.rating.rate ? p : min
+    );
+    console.log(`Title : ${lowestRated.title}`);
+    console.log(`Rating : ${lowestRated.rating.rate}`);
+    
+// 16) Category Wise Product Count.
+
+    console.log("\n=== Category Wise Count ===");
+    const categoryCount = products.reduce((acc, p) => {
+      acc[p.category] = (acc[p.category] || 0) + 1;
+      return acc;
+    }, {});
+    Object.entries(categoryCount).forEach(([category, count]) => {
+      console.log(`${category} : ${count}`);
+    });
+    
+// 17) Create Discounted Products (10% discount).
+
+    console.log("\n=== Discounted Products ===");
+    const discountedProducts = products.map(p => ({
+      title: p.title,
+      oldPrice: p.price,
+      newPrice: +(p.price * 0.9).toFixed(2)
+    }));
+    console.log(JSON.stringify(discountedProducts.slice(0, 3), null, 2));
+    
+// 18) Sort Products Low To High.
+
+    console.log("\n=== Sort Low To High ===");
+    const sortedLowToHigh = [...products].sort((a, b) => a.price - b.price);
+    sortedLowToHigh.slice(0, 5).forEach(p => {
+      console.log(`${p.title} - $${p.price}`);
+    });
+    
+// 19) Sort Products High To Low. 
+
+    console.log("\n=== Sort High To Low ===");
+    const sortedHighToLow = [...products].sort((a, b) => b.price - a.price);
+    sortedHighToLow.slice(0, 5).forEach(p => {
+      console.log(`${p.title} - $${p.price}`);
+    });
+    
+// 20) Check Any Product Above $500.
+
+    console.log("\n=== Any Product Above $500 ===");
+    const anyAbove500 = products.some(p => p.price > 500);
+    console.log(anyAbove500);
+    
+// 21) Check All Products Above Rating 3.
+
+    console.log("\n=== All Products Above Rating 3 ===");
+    const allAboveRating3 = products.every(p => p.rating.rate > 3);
+    console.log(allAboveRating3);
+    
+// 22) Print Top 5 Costliest Products.
+
+    console.log("\n=== Top 5 Costliest ===");
+    sortedHighToLow.slice(0, 5).forEach((p, index) => {
+      console.log(`${index + 1}. ${p.title}`);
+    });
+    
+// 23) Print Top 5 Rated Products.
+
+    console.log("\n=== Top 5 Rated ===");
+    const sortedByRating = [...products].sort((a, b) => b.rating.rate - a.rating.rate);
+    sortedByRating.slice(0, 5).forEach((p, index) => {
+      console.log(`${index + 1}. ${p.title} - Rating: ${p.rating.rate}`);
+    });
+    
+// 24) Group Products By Category.
+
+    console.log("\n=== Group By Category ===");
+    const groupedByCategory = products.reduce((acc, p) => {
+      if (!acc[p.category]) {
+        acc[p.category] = [];
+      }
+      acc[p.category].push(p);
+      return acc;
+    }, {});
+    console.log(JSON.stringify(groupedByCategory, null, 2));
+    
+// 25) Convert Product Prices To INR (1 USD = 85 INR).
+
+    console.log("\n=== Prices in INR ===");
+    const exchangeRate = 85;
+    products.slice(0, 5).forEach(p => {
+      console.log(`Title : ${p.title}`);
+      console.log(`Price : ₹${(p.price * exchangeRate).toFixed(2)}`);
+    });
+ 
+// 26) Amazon Product Filter.
+
+    console.log("\n=== Amazon Product Filter ===");
+    const amazonFiltered = products.filter(p => 
+      p.price < 500 && 
+      p.rating.rate > 4 && 
+      p.category === 'electronics'
+    );
+    amazonFiltered.forEach(p => {
+      console.log(`${p.title} - $${p.price} - Rating: ${p.rating.rate}`);
+    });
+    
+// 27) Best Seller Product (Highest Rating).
+
+    console.log("\n=== Best Seller Product ===");
+    const bestSeller = products.reduce((max, p) => 
+      p.rating.rate > max.rating.rate ? p : max
+    );
+    console.log(`Title: ${bestSeller.title}`);
+    console.log(`Rating: ${bestSeller.rating.rate}`);
+    console.log(`Price: ${bestSeller.price}`);
+    
+// 28) Product Analytics Dashboard.
+
+    console.log("\n=== Product Analytics Dashboard ===");
+    const totalCategories = [...new Set(products.map(p => p.category))].length;
+    console.log(`Total Products : ${products.length}`);
+    console.log(`Total Categories : ${totalCategories}`);
+    console.log(`Highest Price Product : ${sortedByPriceDesc[0].title} ($${sortedByPriceDesc[0].price})`);
+    console.log(`Lowest Price Product : ${sortedByPriceAsc[0].title} ($${sortedByPriceAsc[0].price})`);
+    console.log(`Average Price : ${averagePrice.toFixed(2)}`);
+    console.log(`Best Rated Product : ${highestRated.title} (Rating: ${highestRated.rating.rate})`);
+    
+// 29) Inventory Report.
+
+    console.log("\n=== Inventory Report ===");
+    const expensiveProducts = products.filter(p => p.price > 100);
+    const affordableProducts = products.filter(p => p.price < 50);
+    const electronics = products.filter(p => p.category === 'electronics');
+    const jewelery = products.filter(p => p.category === 'jewelery');
+    const mensClothing = products.filter(p => p.category === "men's clothing");
+    const womensClothing = products.filter(p => p.category === "women's clothing");
+    
+    console.log(`Expensive Products : ${expensiveProducts.length}`);
+    console.log(`Affordable Products : ${affordableProducts.length}`);
+    console.log(`Electronics : ${electronics.length}`);
+    console.log(`Jewellery : ${jewelery.length}`);
+    console.log(`Mens Clothing : ${mensClothing.length}`);
+    console.log(`Womens Clothing : ${womensClothing.length}`);
+    
+// 30) Complete Admin Dashboard (Interview Level).
+
+    console.log("\n==============================");
+    console.log("     COMPLETE ADMIN DASHBOARD");
+    console.log("==============================");
+    console.log("");
+    console.log(`TOTAL PRODUCTS : ${products.length}`);
+    console.log(`TOTAL CATEGORIES : ${totalCategories}`);
+    console.log(`TOTAL PRICE : ${totalPrice}`);
+    console.log(`AVERAGE PRICE : ${averagePrice.toFixed(2)}`);
+    console.log("");
+    console.log(`HIGHEST PRICE PRODUCT : ${sortedByPriceDesc[0].title} ($${sortedByPriceDesc[0].price})`);
+    console.log(`LOWEST PRICE PRODUCT : ${sortedByPriceAsc[0].title} ($${sortedByPriceAsc[0].price})`);
+    console.log("");
+    console.log(`BEST RATED PRODUCT : ${highestRated.title} (Rating: ${highestRated.rating.rate})`);
+    console.log(`LOWEST RATED PRODUCT : ${lowestRated.title} (Rating: ${lowestRated.rating.rate})`);
+    console.log("");
+    console.log(`PRODUCTS ABOVE $100 : ${products.filter(p => p.price > 100).length}`);
+    console.log(`PRODUCTS BELOW $50 : ${productsBelow50.length}`);
+    console.log("");
+    console.log("CATEGORY COUNTS :");
+    Object.entries(categoryCount).forEach(([category, count]) => {
+      console.log(`  ${category} : ${count}`);
+    });
+    console.log("");
+    console.log("==============================");
+    
+  })
+  .catch(error => {
+    console.error("Error fetching products:", error);
+  })
+  .finally(() => {
+    console.log("\n=== All tasks completed! ===");
+  });
+
+  
+     </script>
+</body>
+</html>

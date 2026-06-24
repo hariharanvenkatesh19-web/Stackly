@@ -1,0 +1,252 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=scr, initial-scale=1.0">
+    <title>Task2</title>
+</head>
+<body>
+    <script>
+
+// 1) Student Login Check.
+
+      let username = prompt("Username:");
+      let password = prompt("Password:");
+      if (username == "admin" && password == "1234") {
+      prompt("Login Success");
+      } 
+      else 
+      {
+      prompt("Invalid User");
+      }
+
+// 2) Atm Balance System.
+
+      let balance = 5000;
+      let withdrawAmount = Number(prompt("Enter withdraw amount:"));
+      if (withdrawAmount <= balance) {
+      prompt("Withdraw Success");
+      }
+      else 
+      {
+      prompt("Insufficient Balance");
+      }
+
+// 3) Traffic Signal Project.
+
+      let signal = prompt("Enter signal (red, yellow, green):");
+      switch (signal) 
+      {
+      case "red":
+      console.log("stop");
+      break;
+      case "yellow":
+      console.log("ready");
+      break;
+      case "green":
+      console.log("go");
+      break;
+      default:
+      console.log("Invalid signal");
+}
+
+// 4) Age Eligibility Checker.
+
+      let age = Number(prompt("Enter your age:"));
+      if (age >= 18) {
+      console.log("Eligible for Vote");
+      }
+      else 
+      {
+      console.log("Not Eligible");
+      }
+
+// 5) Shopping Discount System.
+
+      let price = Number(prompt("Enter product price:"));
+      {
+      if (price > 5000) 
+      {
+      console.log("20% discount");
+      } 
+      else if (price > 3000) 
+      {
+      console.log("10% discount");
+      } 
+      else 
+      {
+      console.log("No discount");
+      }
+      } 
+
+// 6) Password Strength Checker.
+
+      let pwd = prompt("Enter password:");
+      if (pwd !== null && pwd.length >= 8) {
+      console.log("Strong Password");
+      }
+      else 
+      {
+      console.log("Weak Password");
+}
+
+// 7) Mobile Battery Warning.
+
+      let battery = Number(prompt("Battery percentage:"));
+      {
+      if (battery <= 10) {
+      console.log("Battery Low");
+      }
+      else if (battery <= 50) 
+      {
+      console.log("Battery Medium");
+      }
+      else
+      {
+      console.log("Battery Full");
+      }
+      }
+
+// 8) Employee Salary Bonus.
+
+      let salary = Number(prompt("Enter salary:"));
+      {
+      if (salary >= 50000) {
+      console.log("15% bonus");
+      }
+      else if (salary >= 30000) 
+      {
+      console.log("10% bonus");
+      }
+      else {
+      console.log("5% bonus");
+      }
+} 
+
+// 9)  Online Food Order.
+
+      let orderAmount = Number(prompt("Enter order amount:"));
+      if (orderAmount > 499) {
+      console.log("Free Delivery");
+      } else {
+      console.log("Delivery Charge Added");
+}
+
+// 10) Movie Ticket Booking.
+
+      let ageTicket = Number(prompt("Enter age:"));
+      {
+      if (ageTicket < 5) {
+      console.log("Free ticket");
+      } else if (ageTicket < 18) {
+      console.log("Child ticket");
+      } else {
+      console.log("Adult ticket");
+      }
+} 
+
+// 11) Instagram Likes Counter.
+
+      for (let i = 1; i <= 5; i++) {
+      console.log("Like " + i);
+}
+
+// 12) Countdown Timer.
+      
+      let count = 5;
+      while (count > 0) {
+      console.log(count);
+      count--;
+}
+      console.log("Start");
+
+// 13) OTP Verification.
+
+      const OTP = 1234;
+      let inputOtp = Number(prompt("Enter OTP:"));
+      if (inputOtp === OTP) {
+      console.log("OTP Verified");
+      } else {
+      console.log("Invalid OTP");
+}
+
+// 14) E-commerce Cart Total.
+
+         let cart = [200, 500, 1000, 300];
+         let total = 0;
+         for (let i = 0; i < cart.length; i++) {
+         total += cart[i];
+         }
+         console.log("Total cart value:", total);
+        
+// 15) Student Mark Grade System.
+
+         let mark = Number(prompt("Enter mark:"));
+        {
+        if (mark >= 90) {
+        console.log("A Grade");
+        } else if (mark >= 70) {
+        console.log("B Grade");
+        } else if (mark >= 50) {
+        console.log("C Grade");
+        } else {
+        console.log("Fail");
+  }
+} 
+
+// 16) Netflix Subscription Checker.
+
+       let subscription = true; // or false
+       if (subscription) {
+       console.log("Watch Movie");
+       } else {
+       console.log("Buy Subscription");
+}
+
+// 17) Product Stock Checker.
+
+       let stock = 0;
+       if (stock > 0) {
+       console.log("Product Available");
+       } else {
+       console.log("Out of Stock");
+}
+
+// 18) Weather App Condition.
+
+       let weather = prompt("Enter weather (sunny, rainy, cold):");
+       switch (weather) {
+       case "sunny":
+       console.log("Go Outside");
+       break;
+       case "rainy":
+       console.log("Take Umbrella");
+       break;
+       case "cold":
+       console.log("Wear Jacket");
+       break;
+       default:
+       console.log("Unknown weather");
+}
+
+// 19) User Profile Object.
+      
+       let user = {
+       name: "Hariharan",
+       age: 26,
+       city: "Salem"
+       };
+       for (let key in user) {
+       console.log(key + ":", user[key]);
+}
+
+// 20) WhatsApp Chat Array.
+
+       let chats = ["hi", "hello", "where are you", "ok"];
+       for (let msg of chats) {
+       console.log(msg);
+}
+      
+    </script>
+</body>
+</html>

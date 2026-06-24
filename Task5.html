@@ -1,0 +1,221 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=scr, initial-scale=1.0">
+    <title>Task2</title>
+</head>
+<body>
+    <script>
+// 1) Spread operator.
+
+let frontEnd = ["HTML", "CSS"];
+let backEnd = ["Node", "MongoDB"];
+
+let merged = [...frontEnd, ...backEnd];
+console.log("merded output :", merged);
+
+// 2) Copy Array.
+
+let original = [1, 2, 3];
+let copied = [...original];
+copied.push(4);
+
+console.log("Original Value:", original);
+console.log("Copied Value:", copied);
+console.log("If Any changes", original.length !== 3);
+
+// 3) Object Merge.
+
+let student1 = {
+  name: "HariHaran"
+};
+
+let student2 = {
+  role: "Java Full Stack Developer"
+};
+
+let mergedStudent = { ...student1, ...student2 };
+console.log("Student Profile Merged :", mergedStudent);
+
+// 4) Rest Operator.
+
+function total(a, b, ...rest) {
+  console.log("a:", a);
+  console.log("b:", b);
+  console.log("remaining values:", rest);
+  console.log("remaining count:", rest.length);
+}
+
+total(1, 2, 3, 4, 5, 6, 7, 8);
+
+// 5) Array Destructuring.
+
+let colors = ["red", "green", "blue", "yellow"];
+let [c1, c2, c3, c4] = colors;
+console.log("Array Destructure : ", c3);
+
+// 6) Nested Array Destructuring.
+
+let data = [1, [2, [3, [4]]]];
+let [v1, [v2, [v3, [v4]]]] = data;
+console.log("Nested Array :", v1, v2, v3, v4);
+
+// 7) Object Destructuring.
+
+let mobile = {
+  brand: "MI",
+  price: 20000,
+  color: "black"
+};
+
+// 8) push() & pop().
+
+let numbers = [1, 2, 3];
+numbers.push(4, 5, 6);
+numbers.pop();
+console.log("Push And Pop :", numbers);
+
+// 9) shift() & unshift().
+
+let fruits = ["banana", "orange"];
+fruits.unshift("apple");
+fruits.shift();
+console.log("Shift And Unshift :", fruits);
+
+// 10) splice().
+
+let ary = [1, 2, 30, 40, 5, 6];
+arr.splice(2, 2, 3, 4);
+console.log("Splice :", ary);
+
+// 11) concat().
+
+let a = [1, 2];
+let b = [3, 4];
+let merge = a.concat(b, 5, 6);
+console.log("Concat :", combined);
+
+// 12) slice()
+
+let marks = [10, 20, 30, 40, 50, 60];
+let extracted = marks.slice(2, 5);
+console.log("Slice :", extracted);
+
+// 13) flat().
+
+let nest = [1, [2, [3, [4, [5]]]]];
+let flatArr = nest.flat(Infinity);
+console.log("Flat :", flatArr);
+
+// 14) fill().
+
+let Ary = [1, 2, 3, 4, 5];
+Ary.fill("done", 3);
+console.log("Fill :", Ary);
+
+// 15) includes().
+
+let values = [10, 20, 30, 40];
+console.log("20:", values.includes(20));
+console.log("100:", values.includes(100));
+
+// 16) indexOf().
+
+let ary1 = [1, 2, 3, 4, 3, 2];
+console.log("Index of 3:", ary1.indexOf(3));
+console.log("Index of 2:", ary1.indexOf(2));
+
+// 17) lastIndexOf().
+
+console.log("Last index of 3:", ary2.lastIndexOf(3));
+console.log("Last index of 2:", ary2.lastIndexOf(2));
+
+// 18) sort().
+
+let num = [100, 2, 55, 1, 9];
+console.log("Wrong sort:", [...num].sort());
+console.log("Correct sort:", [...num].sort((x, y) => x - y));
+
+// 19) reverse().
+
+let letters = ["a", "b", "c", "d"];
+console.log("Reverse:", letters.reverse());
+
+// 20) Student Management.
+
+let students = ["Rahul", "Ajay", "Kumar"];
+students.push("Ravi");
+students.splice(1, 1);
+students[1] = "Vijay";
+students.reverse();
+console.log(" Student Managment :", students);
+
+// 21) Shopping Cart.
+
+let cart = ["Shoes", "Watch", "Phone"];
+cart.push("Laptop");
+cart.splice(cart.indexOf("Watch"), 1);
+console.log("Phone exists:", cart.includes("Phone"));
+console.log("Total items:", cart.length);
+console.log("Final cart:", cart);
+
+// 22) Employee Database.
+
+let employee = {
+  name: " Hariharan",
+  role: "Java Full stack Developer",
+  salary: "5LPA"
+};
+
+let { name: empName, role: empRole, salary: empSalary } = employee;
+let copiedEmployee = { ...employee };
+copiedEmployee.salary = "7LPA";
+
+console.log("destructured:", empName, empRole, empSalary);
+console.log("Copied:", copiedEmployee);
+console.log("Original changed?", employee.salary !== copiedEmployee.salary);
+
+// 23) Custom Function.
+
+function company(name, ...skills) {
+  console.log("Name:", name);
+  console.log("Skills:", skills);
+  console.log("Skill count:", skills.length);
+}
+company("Hariharan", "HTML", "CSS", "JS", "React");
+
+// 24) Array Analyzer.
+
+let data2 = [1,2,3,4,5,6,7,8,9,10];
+console.log("First 5:", data2.slice(0, 5));
+console.log("Reversed:", [...data2].reverse());
+console.log("7 exists:", data2.includes(7));
+console.log("Index of 10:", data2.indexOf(10));
+
+// 25) Complete Challenge.
+
+let users = [
+  { name: "Rahul", role: "Developer" },
+  { name: "Ajay", role: "Designer" },
+  { name: "Kumar", role: "Tester" }
+];
+
+users.push({ name: "Ravi", role: "Manager" });
+users.pop();
+
+let moreUsers = [
+  { name: "Anu", role: "HR" },
+  { name: "Kiran", role: "Support" }
+];
+
+let finalUsers = [...users, ...moreUsers];
+let userNames = finalUsers.map(user => user.name);
+let reversedUsers = [...finalUsers].reverse();
+
+console.log("User names:", userNames);
+console.log("Reversed:", reversedUsers);
+
+    </script>
+</body>
+</html>

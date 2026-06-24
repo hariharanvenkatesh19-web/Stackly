@@ -1,0 +1,172 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=scr, initial-scale=1.0">
+    <title>Task2</title>
+</head>
+<body>
+    <script>
+// 1)  Smart Attendance Checker.
+
+function Attendancechecker(attendance, feesPaid) {
+  if (attendance >= 75 && feesPaid === true) {
+    console.log("Allowed for Exam");
+  } else {
+    console.log("Not Allowed");
+  }
+}
+
+Attendancechecker(70, true);
+
+// 2) Mobile Password Strength Checker.
+
+function checkPassword(password) {
+  let Length = password.length >= 8;
+  let Number = false;
+  let Uppercase = false;
+
+  for (let i = 0; i < password.length; i++) {
+    let ch = password[i];
+
+    if (ch >= "0" && ch <= "9") {
+      Number = true;
+    }
+
+    if (ch >= "A" && ch <= "Z") {
+      Uppercase = true;
+    }
+  }
+
+  if (Length && Number && Uppercase) {
+    console.log("Strong Password");
+  } else {
+    console.log("Weak Password");
+  }
+}
+
+checkPassword("Abc12345");
+
+//  3) Find Second Largest Number. 
+
+function secondLargest(ary) {
+  let largest = ary[0];
+  let second = ary[0];
+
+for (let i = 1; i < ary.length; i++) {
+  if (ary[i] > largest) {
+      second = largest;
+      largest = ary[i];
+    } else if (ary[i] > second && ary[i] < largest) {
+      second = ary[i];
+    }
+  }
+
+  console.log(second);
+}
+
+secondLargest([10, 50, 80, 20, 90, 70]);
+
+// 4) Bus Seat Booking System.
+
+let seats = [false, false, false, false, false, false, false, false, false, false];
+
+function bookSeat(seatNumber) {
+  let seat = seatNumber - 1;
+
+  if (seats[seat] === true) {
+    console.log("Seat Already Booked");
+  } else {
+    seats[seat] = true;
+    console.log("Seat Booked Successfully");
+  }
+}
+
+bookSeat(1);
+
+// 5) ATM Cash Withdraw Logic.
+
+function withdraw(balance, amount) {
+  if (amount <= balance - 1000) {
+    balance = balance - amount;
+    console.log("Withdraw Successful");
+    console.log("Remaining Balance:", balance);
+  } else {
+    console.log("Insufficient Balance");
+  }
+}
+
+withdraw(10000, 9000);
+
+// 6)Product Search Engine.
+
+function Product(products, Item) {
+  for (let product of products) {
+    if (product.toLowerCase() === Item.toLowerCase()) {
+      console.log("Product Found");
+      return;
+    }
+  }
+  console.log("Product Not Found");
+}
+
+Product(["iphone", "redmi", "vivo", "nothing"], "vivo");
+
+// 7) Voting Eligibility System.
+
+function canVote(age, hasVoterId, citizenship) {
+  if (age >= 18) {
+    if (hasVoterId && citizenship === "Indian") {
+      console.log("Eligible to Vote");
+    } else {
+      console.log("Not Eligible");
+    }
+  } else {
+    console.log("Not Eligible");
+  }
+}
+
+canVote(20, true, "Indian");
+
+// 8) Online Food Order Bill.
+
+function calculateBill(foodPrice, gst, deliveryCharge, discount) {
+  let total = foodPrice + gst + deliveryCharge - discount;
+  console.log("Total Bill : ₹" + total);
+}
+
+calculateBill(400, 40, 20, 10);
+
+// 9) Reverse Word Without reverse().
+
+function reverseWord(word) {
+  let result = "";
+
+  for (let i = word.length - 1; i >= 0; i--) {
+    result = result + word[i];
+  }
+
+  console.log(result);
+}
+
+reverseWord("HariHaran");
+
+// 10) Mini Instagram Like System.
+
+let totalLikes = 0;
+
+function likePost(Liked) {
+  let status = Liked ? "Liked ❤️" : "Like 🤍";
+  if (Liked) {
+    totalLikes++;
+  }
+  console.log(status);
+  console.log("Total Likes:", totalLikes);
+}
+
+likePost(true);
+likePost(false);
+
+    </script>
+</body>
+</html>
