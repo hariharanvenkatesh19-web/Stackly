@@ -1,0 +1,289 @@
+-- 1. Balance greater than 20,000
+SELECT *
+FROM accounts
+WHERE balance > 20000;
+
+-- 2. Customers from Chennai
+SELECT *
+FROM customers
+WHERE city = 'Chennai';
+
+-- 3. Balance between 20,000 and 50,000
+SELECT *
+FROM accounts
+WHERE balance BETWEEN 20000 AND 50000;
+
+-- 4. Names starting with J
+SELECT *
+FROM customers
+WHERE name LIKE 'J%';
+
+-- 5. Savings or Current accounts
+SELECT *
+FROM accounts
+WHERE account_type IN ('Savings', 'Current');
+
+-- 6. Accounts not Savings
+SELECT *
+FROM accounts
+WHERE account_type <> 'Savings';
+
+-- 7. Names containing letter a
+SELECT *
+FROM customers
+WHERE name LIKE '%a%';
+
+-- 8. Balance less than or equal to 30,000
+SELECT *
+FROM accounts
+WHERE balance <= 30000;
+
+-- 9. Customers not from Madurai
+SELECT *
+FROM customers
+WHERE city <> 'Madurai';
+
+-- 10. Balance not between 10,000 and 40,000
+SELECT *
+FROM accounts
+WHERE balance NOT BETWEEN 10000 AND 40000;
+
+-- 11. Names ending with i
+SELECT *
+FROM customers
+WHERE name LIKE '%i';
+
+-- 12. Balance equal to 50,000
+SELECT *
+FROM accounts
+WHERE balance = 50000;
+
+-- 13. Customers from Chennai or Salem
+SELECT *
+FROM customers
+WHERE city IN ('Chennai', 'Salem');
+
+-- 14. Balance greater than 10,000 and less than 40,000
+SELECT *
+FROM accounts
+WHERE balance > 10000
+  AND balance < 40000;
+
+-- 15. Account type is not Current
+SELECT *
+FROM accounts
+WHERE account_type NOT IN ('Current');
+
+-- 16. Accounts sorted by balance descending
+SELECT *
+FROM accounts
+ORDER BY balance DESC;
+
+-- 17. Customers sorted alphabetically
+SELECT *
+FROM customers
+ORDER BY name ASC;
+
+-- 18. Sort by account type and balance descending
+SELECT *
+FROM accounts
+ORDER BY account_type ASC, balance DESC;
+
+-- 19. Total balance
+SELECT SUM(balance) AS total_balance
+FROM accounts;
+
+-- 20. Average balance
+SELECT AVG(balance) AS average_balance
+FROM accounts;
+
+-- 21. Maximum balance
+SELECT MAX(balance) AS maximum_balance
+FROM accounts;
+
+-- 22. Minimum balance
+SELECT MIN(balance) AS minimum_balance
+FROM accounts;
+
+-- 23. Total number of customers
+SELECT COUNT(*) AS total_customers
+FROM customers;
+
+
+-- 24. Total balance by account type
+SELECT account_type, SUM(balance) AS total_balance
+FROM accounts
+GROUP BY account_type;
+
+-- 25. Average balance by account type
+SELECT account_type, AVG(balance) AS average_balance
+FROM accounts
+GROUP BY account_type;
+
+-- 26. Account types with average balance greater than 20,000
+SELECT account_type, AVG(balance) AS average_balance
+FROM accounts
+GROUP BY account_type
+HAVING AVG(balance) > 20000;
+
+-- 27. Number of accounts for each customer
+SELECT customer_id, COUNT(*) AS account_count
+FROM accounts
+GROUP BY customer_id;
+
+-- 28. Customers having more than one account
+SELECT customer_id, COUNT(*) AS account_count
+FROM accounts
+GROUP BY customer_id
+HAVING COUNT(*) > 1;
+
+-- 29. Customer names with account balances
+SELECT c.name, a.balance
+FROM customers c
+INNER JOIN accounts a
+ON c.customer_id = a.customer_id;
+
+-- 30. All customers and their accounts
+SELECT c.name, a.account_id, a.account_type, a.balance
+FROM customers c
+LEFT JOIN accounts a
+ON c.customer_id = a.customer_id;
+
+-- 31. All accounts with customer details
+SELECT a.account_id, a.account_type, a.balance,
+       c.name, c.city
+FROM accounts a
+INNER JOIN customers c
+ON a.customer_id = c.customer_id;
+
+-- 32. Customers and account types where balance > 20,000
+SELECT c.name, a.account_type, a.balance
+FROM customers c
+INNER JOIN accounts a
+ON c.customer_id = a.customer_id
+WHERE a.balance > 20000;
+
+-- 33. Customers with their total balance
+SELECT c.name, SUM(a.balance) AS total_balance
+FROM customers c
+INNER JOIN accounts a
+ON c.customer_id = a.customer_id
+GROUP BY c.customer_id, c.name;
+
+-- 34. Customer names and balances sorted by balance
+SELECT c.name, a.balance
+FROM customers c
+INNER JOIN accounts a
+ON c.customer_id = a.customer_id
+ORDER BY a.balance DESC;
+
+-- 35. Number of accounts for each city
+SELECT c.city, COUNT(a.account_id) AS account_count
+FROM customers c
+LEFT JOIN accounts a
+ON c.customer_id = a.customer_id
+GROUP BY c.city;
+
+-- 36. Accounts with balance greater than average balance
+SELECT *
+FROM accounts
+WHERE balance > (
+    SELECT AVG(balance)
+    FROM accounts
+);
+
+-- 37. Customers who have accounts
+SELECT *
+FROM customers
+WHERE customer_id IN (
+    SELECT customer_id
+    FROM accounts
+);
+
+-- 38. Customers without accounts
+SELECT *
+FROM customers
+WHERE customer_id NOT IN (
+    SELECT customer_id
+    FROM accounts
+);
+
+-- 39. Account or accounts with maximum balance
+SELECT *
+FROM accounts
+WHERE balance = (
+    SELECT MAX(balance)
+    FROM accounts
+);
+
+-- 40. Customers whose total balance is greater than 40,000
+SELECT c.name, SUM(a.balance) AS total_balance
+FROM customers c
+INNER JOIN accounts a
+ON c.customer_id = a.customer_id
+GROUP BY c.customer_id, c.name
+HAVING SUM(a.balance) > 40000;
+
+-- Railway Reservation --
+
+-- 41. Bookings with fare greater than 400
+SELECT *
+FROM bookings
+WHERE fare > 400;
+
+-- 42. Bookings whose status is not Confirmed
+SELECT *
+FROM bookings
+WHERE status <> 'Confirmed';
+
+-- 43. Trains starting from Chennai
+SELECT *
+FROM trains
+WHERE source = 'Chennai';
+
+-- 44. Bookings with fare between 300 and 500
+SELECT *
+FROM bookings
+WHERE fare BETWEEN 300 AND 500;
+
+-- 45. Passengers whose names start with A
+SELECT *
+FROM bookings
+WHERE passenger_name LIKE 'A%';
+
+-- 46. Train names with passenger names
+SELECT t.train_name, b.passenger_name
+FROM trains t
+INNER JOIN bookings b
+ON t.train_id = b.train_id;
+
+-- 47. Number of bookings for each train
+SELECT t.train_name, COUNT(b.booking_id) AS booking_count
+FROM trains t
+LEFT JOIN bookings b
+ON t.train_id = b.train_id
+GROUP BY t.train_id, t.train_name;
+
+-- 48. Total fare collected for each train
+SELECT t.train_name, SUM(b.fare) AS total_fare
+FROM trains t
+INNER JOIN bookings b
+ON t.train_id = b.train_id
+GROUP BY t.train_id, t.train_name;
+
+-- 49. Bookings with the highest fare
+SELECT *
+FROM bookings
+WHERE fare = (
+    SELECT MAX(fare)
+    FROM bookings
+);
+
+-- 50. Trains having more than one booking
+SELECT t.train_name, COUNT(b.booking_id) AS booking_count
+FROM trains t
+INNER JOIN bookings b
+ON t.train_id = b.train_id
+GROUP BY t.train_id, t.train_name
+HAVING COUNT(b.booking_id) > 1;
+

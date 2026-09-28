@@ -1,0 +1,278 @@
+-- Employee Table --
+
+-- 1. Total number of employees in each department
+SELECT department, COUNT(*) AS employee_count
+FROM Employee
+GROUP BY department;
+
+-- 2. Average salary of employees in each department
+SELECT department, AVG(salary) AS average_salary
+FROM Employee
+GROUP BY department;
+
+-- 3. Departments having more than one employee
+SELECT department, COUNT(*) AS employee_count
+FROM Employee
+GROUP BY department
+HAVING COUNT(*) > 1;
+
+-- 4. Highest salary in each department
+SELECT department, MAX(salary) AS highest_salary
+FROM Employee
+GROUP BY department;
+
+-- 5. Lowest salary in each department
+SELECT department, MIN(salary) AS lowest_salary
+FROM Employee
+GROUP BY department;
+
+-- 6. Departments whose average salary is greater than 50,000
+SELECT department, AVG(salary) AS average_salary
+FROM Employee
+GROUP BY department
+HAVING AVG(salary) > 50000;
+
+-- 7. Total salary expenditure for each department
+SELECT department, SUM(salary) AS total_salary
+FROM Employee
+GROUP BY department;
+
+-- 8. All employees sorted by salary descending
+SELECT *
+FROM Employee
+ORDER BY salary DESC;
+
+-- 9. Employees sorted by department then salary descending
+SELECT *
+FROM Employee
+ORDER BY department ASC, salary DESC;
+
+-- 10. Cities that have more than one employee
+SELECT city, COUNT(*) AS employee_count
+FROM Employee
+GROUP BY city
+HAVING COUNT(*) > 1;
+
+-- 11. Total salary paid in each city
+SELECT city, SUM(salary) AS total_salary
+FROM Employee
+GROUP BY city;
+
+-- 12. Departments ordered by total salary expenditure (highest to lowest)
+SELECT department, SUM(salary) AS total_salary
+FROM Employee
+GROUP BY department
+ORDER BY total_salary DESC;
+
+-- 13. Number of employees in each department whose salary > 50,000
+SELECT department, COUNT(*) AS employee_count
+FROM Employee
+WHERE salary > 50000
+GROUP BY department;
+
+-- 14. Difference between highest and lowest salary in each department
+SELECT department, 
+       MAX(salary) - MIN(salary) AS salary_difference
+FROM Employee
+GROUP BY department;
+
+-- 15. Top 3 highest-paid employees
+SELECT *
+FROM Employee
+ORDER BY salary DESC
+LIMIT 3;
+
+-- Customer Table --
+
+-- 16. Total order amount for each customer
+SELECT customer_id, SUM(amount) AS total_amount
+FROM Orders
+GROUP BY customer_id;
+
+-- 17. Customers who have placed more than 3 orders
+SELECT customer_id, COUNT(*) AS order_count
+FROM Orders
+GROUP BY customer_id
+HAVING COUNT(*) > 3;
+
+-- 18. Average order amount for each customer
+SELECT customer_id, AVG(amount) AS average_amount
+FROM Orders
+GROUP BY customer_id;
+
+-- 19. Highest order amount placed by each customer
+SELECT customer_id, MAX(amount) AS highest_amount
+FROM Orders
+GROUP BY customer_id;
+
+-- 20. Customers sorted by total purchase amount
+SELECT customer_id, SUM(amount) AS total_purchase
+FROM Orders
+GROUP BY customer_id
+ORDER BY total_purchase DESC;
+
+-- 21. Customers whose total purchase amount exceeds 10,000
+SELECT customer_id, SUM(amount) AS total_purchase
+FROM Orders
+GROUP BY customer_id
+HAVING SUM(amount) > 10000;
+
+-- 22. Customer names with total number of orders
+SELECT c.customer_name, COUNT(o.order_id) AS total_orders
+FROM Customers c
+INNER JOIN Orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.customer_name;
+
+-- 23. Customer who spent the highest amount
+SELECT c.customer_name, SUM(o.amount) AS total_spent
+FROM Customers c
+INNER JOIN Orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.customer_name
+ORDER BY total_spent DESC
+LIMIT 1;
+
+-- 24. Customer who placed the maximum number of orders
+SELECT c.customer_name, COUNT(o.order_id) AS total_orders
+FROM Customers c
+INNER JOIN Orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.customer_name
+ORDER BY total_orders DESC
+LIMIT 1;
+
+-- 25. Customers whose average order amount is greater than 2,000
+SELECT customer_id, AVG(amount) AS average_amount
+FROM Orders
+GROUP BY customer_id
+HAVING AVG(amount) > 2000;
+
+-- 26. Top 5 customers based on total purchase amount
+SELECT c.customer_name, SUM(o.amount) AS total_purchase
+FROM Customers c
+INNER JOIN Orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.customer_name
+ORDER BY total_purchase DESC
+LIMIT 5;
+
+-- 27. Minimum order amount for each customer
+SELECT customer_id, MIN(amount) AS minimum_amount
+FROM Orders
+GROUP BY customer_id;
+
+-- 28. Customers with total orders worth more than 5,000
+SELECT customer_id, SUM(amount) AS total_amount
+FROM Orders
+GROUP BY customer_id
+HAVING SUM(amount) > 5000;
+
+-- 29. Customer-wise total orders and total purchase amount
+SELECT c.customer_name, 
+       COUNT(o.order_id) AS total_orders,
+       SUM(o.amount) AS total_purchase
+FROM Customers c
+INNER JOIN Orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.customer_name;
+
+-- 30. Customers who placed more than 2 orders and spent more than 8,000
+SELECT c.customer_name, 
+       COUNT(o.order_id) AS total_orders,
+       SUM(o.amount) AS total_spent
+FROM Customers c
+INNER JOIN Orders o
+ON c.customer_id = o.customer_id
+GROUP BY c.customer_id, c.customer_name
+HAVING COUNT(o.order_id) > 2 
+   AND SUM(o.amount) > 8000;
+
+-- Students table --
+
+-- 31. Average marks scored by students in each department
+SELECT department, AVG(marks) AS average_marks
+FROM Students
+GROUP BY department;
+
+-- 32. Departments whose average marks are above 75
+SELECT department, AVG(marks) AS average_marks
+FROM Students
+GROUP BY department
+HAVING AVG(marks) > 75;
+
+-- 33. Highest mark scored in each department
+SELECT department, MAX(marks) AS highest_mark
+FROM Students
+GROUP BY department;
+
+-- 34. Total number of students in each department
+SELECT department, COUNT(*) AS student_count
+FROM Students
+GROUP BY department;
+
+-- 35. Departments having more than 5 students
+SELECT department, COUNT(*) AS student_count
+FROM Students
+GROUP BY department
+HAVING COUNT(*) > 5;
+
+-- 36. Departments sorted by average marks (descending)
+SELECT department, AVG(marks) AS average_marks
+FROM Students
+GROUP BY department
+ORDER BY average_marks DESC;
+
+-- 37. Top 3 departments based on average marks
+SELECT department, AVG(marks) AS average_marks
+FROM Students
+GROUP BY department
+ORDER BY average_marks DESC
+LIMIT 3;
+
+-- 38. Departments whose average marks are between 70 and 90
+SELECT department, AVG(marks) AS average_marks
+FROM Students
+GROUP BY department
+HAVING AVG(marks) BETWEEN 70 AND 90;
+
+-- 39. Total marks scored by students in each department
+SELECT department, SUM(marks) AS total_marks
+FROM Students
+GROUP BY department;
+
+-- 40. Departments sorted by total number of students
+SELECT department, COUNT(*) AS student_count
+FROM Students
+GROUP BY department
+ORDER BY student_count DESC;
+
+-- 41. Lowest mark scored in each department
+SELECT department, MIN(marks) AS lowest_mark
+FROM Students
+GROUP BY department;
+
+-- 42. Departments where the highest mark is greater than 90
+SELECT department, MAX(marks) AS highest_mark
+FROM Students
+GROUP BY department
+HAVING MAX(marks) > 90;
+
+-- 43. Number of students scoring above 80 in each department
+SELECT department, COUNT(*) AS student_count
+FROM Students
+WHERE marks > 80
+GROUP BY department;
+
+-- 44. Departments where more than 3 students scored above 75
+SELECT department, COUNT(*) AS student_count
+FROM Students
+WHERE marks > 75
+GROUP BY department
+HAVING COUNT(*) > 3;
+
+-- 45. Departments ordered by highest mark (descending)
+SELECT department, MAX(marks) AS highest_mark
+FROM Students
+GROUP BY department
+ORDER BY highest_mark DESC;
